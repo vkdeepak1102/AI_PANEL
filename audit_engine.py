@@ -2,7 +2,6 @@ import pandas as pd
 import os
 import re
 import json
-import streamlit as st
 import hashlib
 import requests
 from dotenv import load_dotenv
@@ -55,7 +54,6 @@ def run_audit(l1_path, l2_path):
 
     print("\n================ STEP 1 =================")
 
-    # LOAD FILES
     l1_df = pd.read_csv(l1_path, encoding="latin1")
     l2_df = pd.read_csv(l2_path, encoding="latin1")
 
@@ -70,7 +68,6 @@ def run_audit(l1_path, l2_path):
     l2_df = l2_df[l2_df["candidate_id"].isin(valid_ids)]
 
     panel_lookup = {}
-
     for _, row in l2_df.iterrows():
         panel_lookup[row["candidate_id"]] = {
             "panel_member_id": row.get("panel_member_id"),
@@ -82,7 +79,7 @@ def run_audit(l1_path, l2_path):
     print("STEP 1 COMPLETED")
 
     # =================================================
-    # STEP 2
+    # STEP 2 — STRUCTURE REJECTIONS
     # =================================================
     print("\n================ STEP 2 =================")
 
@@ -113,43 +110,95 @@ def run_audit(l1_path, l2_path):
         )
 
     # =================================================
-    # STEP 4 — TRANSCRIPT STRUCTURE
+    # STEP 3 — ROLE RELEVANCE
+    # =================================================
+    print("\n================ STEP 3 =================")
+
+    CACHE_DIR = "cache/relevance"
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    os.makedirs("output/step3_role_relevance", exist_ok=True)
+
+    def cache_key(role, jd, reason):
+        return hashlib.md5(f"{role}::{jd}::{reason}".encode()).hexdigest()
+
+    def mistral_relevance(role, jd, reason):
+        prompt = f"""
+Role: {role}
+Job Description: {jd}
+Rejection Reason: {reason}
+
+Return ONLY: RELEVANT or NOT_RELEVANT
+"""
+        response = call_mistral("", prompt).strip().upper()
+        return response if response in ["RELEVANT", "NOT_RELEVANT"] else "RELEVANT"
+
+    for _, row in l2_df.iterrows():
+        relevance_result = {}
+        role = row["role"]
+        jd = row.get("JD", "")
+
+        for point in row["rejection_points"]:
+            key = cache_key(role, jd, point)
+            cache_path = os.path.join(CACHE_DIR, key + ".txt")
+
+            if os.path.exists(cache_path):
+                relevance_result[point] = open(cache_path).read().strip()
+            else:
+                result = mistral_relevance(role, jd, point)
+                open(cache_path, "w").write(result)
+                relevance_result[point] = result
+
+        fname = safe_filename(row["candidate_name"], row["candidate_id"])
+        json.dump(
+            {
+                "candidate_id": row["candidate_id"],
+                "candidate_name": row["candidate_name"],
+                "role": role,
+                "role_relevance": relevance_result,
+            },
+            open(f"output/step3_role_relevance/{fname}.json", "w"),
+            indent=2,
+        )
+
+    print("STEP 3 COMPLETED")
+
+    # =================================================
+    # STEP 4 — TRANSCRIPTS
     # =================================================
     print("\n================ STEP 4 =================")
 
     def structure_transcript(text):
         out = []
         for line in text.split("\n"):
-            line = line.strip()
-            if not line:
-                continue
-            m = re.match(r"^(.*?):\s*(.*)$", line)
-            if not m:
-                continue
-            speaker = "interviewer" if "interviewer" in m.group(1).lower() else "candidate"
-            out.append({"speaker": speaker, "text": m.group(2).lower()})
+            m = re.match(r"^(.*?):\s*(.*)$", line.strip())
+            if m:
+                speaker = (
+                    "interviewer"
+                    if "interviewer" in m.group(1).lower()
+                    else "candidate"
+                )
+                out.append({"speaker": speaker, "text": m.group(2).lower()})
         return out
 
     os.makedirs("output/transcripts", exist_ok=True)
 
     for _, r in l1_df.iterrows():
         fname = safe_filename(r["candidate_name"], r["candidate_id"])
-        with open(f"output/transcripts/{fname}.json", "w", encoding="utf-8") as f:
-            json.dump(
-                {
-                    "candidate_id": r["candidate_id"],
-                    "candidate_name": r["candidate_name"],
-                    "role": r["role"],
-                    "transcript": structure_transcript(r["Transcript"]),
-                },
-                f,
-                indent=2,
-            )
+        json.dump(
+            {
+                "candidate_id": r["candidate_id"],
+                "candidate_name": r["candidate_name"],
+                "role": r["role"],
+                "transcript": structure_transcript(r["Transcript"]),
+            },
+            open(f"output/transcripts/{fname}.json", "w"),
+            indent=2,
+        )
 
     print("STEP 4 COMPLETED")
 
     # =================================================
-    # STEP 5 — CHUNKING (FIXED)
+    # STEP 5 — CHUNKING
     # =================================================
     print("\n================ STEP 5 =================")
 
@@ -169,85 +218,50 @@ def run_audit(l1_path, l2_path):
             chunks.append({"question": q, "answer": " ".join(a)})
         return chunks
 
-    TRANSCRIPT_DIR = "output/transcripts"
-
-    for f in os.listdir(TRANSCRIPT_DIR):
-        if not f.endswith(".json"):
-            continue
-
-        with open(os.path.join(TRANSCRIPT_DIR, f), "r", encoding="utf-8") as file:
-            d = json.load(file)
-
-        out_path = os.path.join("output/chunks", f.replace(".json", "_chunks.json"))
-
-        with open(out_path, "w", encoding="utf-8") as out_file:
+    for f in os.listdir("output/transcripts"):
+        if f.endswith(".json"):
+            d = json.load(open(os.path.join("output/transcripts", f)))
             json.dump(
                 {**d, "chunks": chunk(d["transcript"])},
-                out_file,
+                open(f"output/chunks/{f.replace('.json','_chunks.json')}", "w"),
                 indent=2,
             )
 
     print("STEP 5 COMPLETED")
 
     # =================================================
-    # STEP 6: VECTOR DATABASE & EMBEDDINGS
-    # =================================================
-       # =================================================
-    # STEP 6 — VECTOR DATABASE
+    # STEP 6 — VECTOR DB
     # =================================================
     print("\n================ STEP 6 =================")
-
-    CHUNK_DIR = "output/chunks"
-    VECTOR_DB_DIR = "vector_db"
-
-    os.makedirs(VECTOR_DB_DIR, exist_ok=True)
 
     embedding_model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 
     client = chromadb.Client(
-        Settings(persist_directory=VECTOR_DB_DIR, anonymized_telemetry=False)
+        Settings(persist_directory="vector_db", anonymized_telemetry=False)
     )
-
     collection = client.get_or_create_collection(name="interview_chunks")
 
-    # CLEAR OLD EMBEDDINGS
     try:
         collection.delete(where={})
-        print("Old embeddings cleared.")
     except:
-        print("No previous embeddings.")
+        pass
 
-    total_chunks = 0
+    for f in os.listdir("output/chunks"):
+        if f.endswith("_chunks.json"):
+            data = json.load(open(os.path.join("output/chunks", f)))
+            for idx, c in enumerate(data["chunks"]):
+                text = f"Question: {c['question']} Answer: {c['answer']}"
+                embedding = embedding_model.encode(text).tolist()
+                collection.add(
+                    documents=[text],
+                    embeddings=[embedding],
+                    ids=[f"{data['candidate_id']}_chunk_{idx}"],
+                    metadatas=[{"candidate_id": data["candidate_id"]}],
+                )
 
-    for file_name in os.listdir(CHUNK_DIR):
-        if not file_name.endswith("_chunks.json"):
-            continue
+    print("STEP 6 COMPLETED")
 
-        with open(os.path.join(CHUNK_DIR, file_name), "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        for idx, chunk_data in enumerate(data["chunks"]):
-            text = f"Question: {chunk_data['question']} Answer: {chunk_data['answer']}"
-            embedding = embedding_model.encode(text).tolist()
-            chunk_id = f"{data['candidate_id']}_chunk_{idx}"
-
-            collection.add(
-                documents=[text],
-                embeddings=[embedding],
-                ids=[chunk_id],
-                metadatas=[
-                    {
-                        "candidate_id": data["candidate_id"],
-                        "role": data["role"],
-                        "chunk_index": idx,
-                    }
-                ],
-            )
-
-            total_chunks += 1
-
-    print(f"Embedded {total_chunks} chunks.")
-
+    print("\n================ ALL STEPS COMPLETED =================")
 
        # =================================================
     # STEP 7 — EVIDENCE RETRIEVAL
@@ -432,111 +446,220 @@ Interview Evidence:
 
     print("STEP 8 COMPLETED")
 
-       # =================================================
-    # STEP 10 — FINAL REPORT
     # =================================================
-    print("\n================ STEP 10 =================")
+# STEP 10 — FINAL AUDIT REPORT
+# =================================================
+print("\n================ STEP 10 =================")
 
-    STEP10_DIR = "output/step10_final_report"
-    os.makedirs(STEP10_DIR, exist_ok=True)
+STEP10_DIR = "output/step10_final_report"
+os.makedirs(STEP10_DIR, exist_ok=True)
 
-    CATEGORY_PROMPT_PATH = "prompts/step10_categorize_reason.txt"
-    COMMENTARY_PROMPT_PATH = "prompts/step10_panel_commentary.txt"
+CATEGORY_PROMPT_PATH = "prompts/step10_categorize_reason.txt"
+COMMENTARY_PROMPT_PATH = "prompts/step10_panel_commentary.txt"
 
-    STEP10_CATEGORY_PROMPT = open(CATEGORY_PROMPT_PATH).read()
-    STEP10_COMMENTARY_PROMPT = open(COMMENTARY_PROMPT_PATH).read()
+with open(CATEGORY_PROMPT_PATH, "r", encoding="utf-8") as f:
+    STEP10_CATEGORY_PROMPT = f.read()
 
-    def calculate_panel_score(item):
+with open(COMMENTARY_PROMPT_PATH, "r", encoding="utf-8") as f:
+    STEP10_COMMENTARY_PROMPT = f.read()
+
+
+# -------------------------------------------------
+# PANEL SCORE CALCULATION
+# -------------------------------------------------
+def calculate_panel_score(item):
+    status = item["validation_status"]
+    depth = item.get("depth_level", "NONE")
+    num_q = item.get("num_questions", 0)
+    follow_up = item.get("follow_up_present", False)
+
+    if status == "SUPPORTED":
+        score = 8
+    elif status == "PARTIALLY_SUPPORTED":
+        score = 5
+    else:
+        score = 2
+
+    if depth == "ADVANCED":
+        score += 2
+    elif depth == "INTERMEDIATE":
+        score += 1
+
+    if num_q >= 4:
+        score += 1
+    elif num_q >= 2:
+        score += 0.5
+
+    if follow_up:
+        score += 0.5
+
+    return round(min(max(score, 1), 10), 1)
+
+
+# -------------------------------------------------
+# CATEGORY CLASSIFICATION (LLM)
+# -------------------------------------------------
+def categorize_reason_llm(role, jd, reason):
+
+    prompt = STEP10_CATEGORY_PROMPT.format(
+        role=role,
+        jd=jd,
+        reason=reason
+    )
+
+    response = call_mistral("", prompt).strip().upper()
+
+    allowed = {
+        "TECHNICAL_SKILL_GAP",
+        "COMMUNICATION_ISSUE",
+        "ATTITUDE_PROFESSIONALISM",
+        "NON_SKILL_FACTOR"
+    }
+
+    return response if response in allowed else "NON_SKILL_FACTOR"
+
+
+# -------------------------------------------------
+# PANEL COMMENTARY GENERATION
+# -------------------------------------------------
+def generate_panel_commentary(audit_facts):
+
+    raw = call_mistral(STEP10_COMMENTARY_PROMPT, json.dumps(audit_facts, indent=2))
+
+    match = re.search(r"\{[\s\S]*\}", raw)
+
+    if match:
+        try:
+            return json.loads(match.group(0))
+        except:
+            pass
+
+    return {
+        "interview_quality": "Unable to conclusively assess interview quality.",
+        "decision_justification": "Decision justification could not be generated.",
+        "identified_gaps": []
+    }
+
+
+# -------------------------------------------------
+# PROCESS STEP 8 FILES
+# -------------------------------------------------
+for file in os.listdir("output/step8_validation"):
+    if not file.endswith(".json"):
+        continue
+
+    step8 = json.load(
+        open(os.path.join("output/step8_validation", file), encoding="utf-8")
+    )
+
+    candidate_id = step8["candidate_id"]
+    candidate_name = step8["candidate_name"]
+    role = step8["role"]
+    jd = step8.get("JD", "")
+    analysis = step8["step_8_analysis"]
+
+    breakdown = []
+    scores = []
+    category_counter = {}
+
+    supported = partially_supported = not_supported = 0
+
+    for item in analysis:
+
+        reason = item["rejection_reason"]
         status = item["validation_status"]
-        depth = item.get("depth_level", "NONE")
-        num_q = item.get("num_questions", 0)
-        follow_up = item.get("follow_up_present", False)
+
+        panel_score = calculate_panel_score(item)
+        scores.append(panel_score)
+
+        category = categorize_reason_llm(role, jd, reason)
+        category_counter[category] = category_counter.get(category, 0) + 1
 
         if status == "SUPPORTED":
-            score = 8
+            supported += 1
         elif status == "PARTIALLY_SUPPORTED":
-            score = 5
+            partially_supported += 1
         else:
-            score = 2
+            not_supported += 1
 
-        if depth == "ADVANCED":
-            score += 2
-        elif depth == "INTERMEDIATE":
-            score += 1
+        breakdown.append({
+            "rejection_reason": reason,
+            "category": category,
+            "validation_status": status,
+            "panel_score": panel_score,
+            "evidence_quality": item.get("depth_level", "NONE"),
+            "justification": item.get("justification", "")
+        })
 
-        if num_q >= 4:
-            score += 1
-        elif num_q >= 2:
-            score += 0.5
+    avg_score = round(sum(scores) / len(scores), 1) if scores else 0
 
-        if follow_up:
-            score += 0.5
+    efficiency_band = (
+        "HIGH" if avg_score >= 8
+        else "MODERATE" if avg_score >= 5
+        else "LOW"
+    )
 
-        return round(min(max(score, 1), 10), 1)
+    primary_driver = (
+        max(category_counter, key=category_counter.get)
+        if category_counter else None
+    )
 
-    for file in os.listdir(STEP8_DIR):
-        if not file.endswith(".json"):
-            continue
+    secondary_drivers = [
+        k for k in category_counter if k != primary_driver
+    ]
 
-        step8 = json.load(open(os.path.join(STEP8_DIR, file), encoding="utf-8"))
+    if not_supported > 0:
+        final_decision = "NOT_JUSTIFIED"
+    elif partially_supported > 0:
+        final_decision = "PARTIALLY_JUSTIFIED"
+    else:
+        final_decision = "JUSTIFIED"
 
-        candidate_id = step8["candidate_id"]
-        candidate_name = step8["candidate_name"]
-        role = step8["role"]
-        analysis = step8["step_8_analysis"]
+    # PANEL COMMENTARY INPUT
+    commentary_input = {
+        "role": role,
+        "job_description": jd,
+        "panel_efficiency_band": efficiency_band,
+        "final_audit_decision": final_decision,
+        "rejection_analysis": breakdown
+    }
 
-        breakdown = []
-        scores = []
-        supported = partially_supported = not_supported = 0
+    panel_commentary = generate_panel_commentary(commentary_input)
 
-        for item in analysis:
-            panel_score = calculate_panel_score(item)
-            scores.append(panel_score)
+    panel_info = panel_lookup.get(str(candidate_id).strip(), {})
 
-            if item["validation_status"] == "SUPPORTED":
-                supported += 1
-            elif item["validation_status"] == "PARTIALLY_SUPPORTED":
-                partially_supported += 1
-            else:
-                not_supported += 1
+    final_report = {
+        "candidate_id": candidate_id,
+        "candidate_name": candidate_name,
+        "role": role,
+        "panel_member_id": panel_info.get("panel_member_id"),
+        "panel_member_name": panel_info.get("panel_member_name"),
+        "panel_member_email": panel_info.get("panel_member_email"),
+        "JD": panel_info.get("JD"),
+        "rejection_summary": {
+            "total_rejection_reasons": len(analysis),
+            "supported": supported,
+            "partially_supported": partially_supported,
+            "not_supported": not_supported,
+        },
+        "rejection_breakdown": breakdown,
+        "primary_rejection_driver": primary_driver,
+        "secondary_rejection_drivers": secondary_drivers,
+        "panel_efficiency": {
+            "efficiency_score": avg_score,
+            "efficiency_band": efficiency_band,
+        },
+        "final_audit_decision": final_decision,
+        "panel_commentary": panel_commentary,
+    }
 
-            breakdown.append({
-                "rejection_reason": item["rejection_reason"],
-                "validation_status": item["validation_status"],
-                "panel_score": panel_score,
-                "justification": item.get("justification", "")
-            })
+    out_path = os.path.join(
+        STEP10_DIR,
+        f"{candidate_id}_{candidate_name.replace(' ', '_')}.json"
+    )
 
-        avg_score = round(sum(scores) / len(scores), 1) if scores else 0
-        efficiency_band = "HIGH" if avg_score >= 8 else "MODERATE" if avg_score >= 5 else "LOW"
+    json.dump(final_report, open(out_path, "w", encoding="utf-8"), indent=2)
 
-        panel_info = panel_lookup.get(str(candidate_id).strip(), {})
+    print(f"STEP 10 REPORT GENERATED → {candidate_id} | {candidate_name}")
 
-        final_report = {
-            "candidate_id": candidate_id,
-            "candidate_name": candidate_name,
-            "role": role,
-            "panel_member_id": panel_info.get("panel_member_id"),
-            "panel_member_name": panel_info.get("panel_member_name"),
-            "panel_member_email": panel_info.get("panel_member_email"),
-            "JD": panel_info.get("JD"),
-            "rejection_summary": {
-                "total_rejection_reasons": len(analysis),
-                "supported": supported,
-                "partially_supported": partially_supported,
-                "not_supported": not_supported,
-            },
-            "rejection_breakdown": breakdown,
-            "panel_efficiency": {
-                "efficiency_score": avg_score,
-                "efficiency_band": efficiency_band,
-            },
-        }
-
-        out_path = os.path.join(
-            STEP10_DIR, f"{candidate_id}_{candidate_name.replace(' ', '_')}.json"
-        )
-
-        json.dump(final_report, open(out_path, "w", encoding="utf-8"), indent=2)
-
-    print("STEP 10 COMPLETED")
+print("STEP 10 COMPLETED")
