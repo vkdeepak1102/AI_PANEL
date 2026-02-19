@@ -1,8 +1,9 @@
 import streamlit as st
 import os
 import json
-import subprocess
 import pandas as pd
+from audit_engine import run_audit
+
 
 # ======================================================
 # PAGE CONFIG
@@ -146,9 +147,9 @@ if page == "Run Audit":
                     file_path = os.path.join(reports_dir, file)
                     if os.path.isfile(file_path):
                         os.remove(file_path)
-
             with st.spinner("Running AI Audit..."):
-                subprocess.run(["python", "audit_engine.py", l1_path, l2_path])
+                run_audit(l1_path, l2_path)
+
 
             reports = []
 
