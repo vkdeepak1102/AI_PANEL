@@ -1,0 +1,739 @@
+candidate_id,candidate_name,role,panel_member_id,panel_member_name,panel_member_email,JD,L1_decision,Transcript
+C001,Arun Kumar,Backend Engineer,P001,Rajesh Kumar,rajesh.kumar@panelhr.com,"Strong proficiency in Python and backend API development
+
+Good understanding of REST APIs, HTTP methods, and authentication
+
+Knowledge of database concepts, ACID properties, and performance optimization
+
+Exposure to scalability, caching, and backend architecture principles",Selected,"Interviewer: Good morning, Arun. Welcome to the interview for the Backend Engineer role. How are you today?
+
+Arun Kumar: Good morning. I’m doing well, thank you. I appreciate the opportunity.
+
+Interviewer: Before we begin, I’d like to give you a brief overview of today’s interview. We’ll be discussing your background, Python fundamentals, and some backend-related concepts. Let’s start with your background. Can you tell me about your experience as a backend engineer?
+
+Arun Kumar: Sure. I have around three years of experience working mainly with Python. In my current role, I work on backend APIs and basic database operations. I mostly handle feature development and bug fixes.
+
+Interviewer: That sounds good. Let’s talk about Python fundamentals. Can you explain the different data types available in Python?
+
+Arun Kumar: Python has data types like integers, floats, strings, lists, tuples, and dictionaries.
+
+Interviewer: Can you explain the difference between a list and a tuple?
+
+Arun Kumar: A list is mutable, so we can change it, and a tuple is immutable, so we cannot change it.
+
+Interviewer: Good. Now let’s move into data structures. Can you explain what a stack is and where it is used?
+
+Arun Kumar: A stack follows the LIFO principle. I understand the concept, but I haven’t really used it much in real applications.
+
+Interviewer: Okay. How would you implement a stack in Python?
+
+Arun Kumar: I think we can use a list, but I’m not sure about the exact implementation details.
+
+Interviewer: That’s fine. Can you explain the difference between a stack and a queue?
+
+Arun Kumar: A stack is LIFO, and a queue is FIFO.
+
+Interviewer: Have you worked with more advanced data structures like trees or graphs?
+
+Arun Kumar: I have studied them theoretically, but I haven’t implemented them in my projects.
+
+Interviewer: Understood. Let’s talk briefly about performance. How do you analyze the time complexity of a Python program?
+
+Arun Kumar: I know about Big O notation, but I usually don’t calculate it unless required.
+
+Interviewer: Thank you for your honesty. Do you have any experience optimizing code for performance?
+
+Arun Kumar: Not really. I mostly write simple logic that works correctly.
+
+Interviewer: Alright. That’s all the questions from my side. Do you have any questions for us?
+
+Arun Kumar: No, I think that’s fine. Thank you for your time.
+
+Interviewer: Thank you, Arun. It was nice speaking with you. We’ll get back to you with the next steps.
+
+Arun Kumar: Thank you. Have a great day."
+C002,Priya S,Data Analyst,P002,Divya Sharma,divya.sharma@panelhr.com,"Strong SQL knowledge including JOIN, GROUP BY, HAVING, and aggregates
+
+Ability to clean, validate, and analyze structured datasets
+
+Experience building dashboards and reports using Excel/SQL
+
+Clear communication of insights to business stakeholders",Selected,"Transcript (copy this fully into the transcript column):
+
+Interviewer: Good morning, Priya. Welcome to the interview for the Data Analyst role. How are you today?
+
+Priya S: Good morning. I’m doing well, thank you. I’m glad to be here.
+
+Interviewer: Before we start, I’d like to let you know that this interview will focus on your analytical background, SQL knowledge, and how you communicate insights. Let’s begin with a brief introduction. Can you tell me about your experience as a data analyst?
+
+Priya S: Sure. I have around two years of experience working as a data analyst. I mostly work with Excel and SQL to create reports and dashboards for internal teams.
+
+Interviewer: That’s good to hear. Let’s talk about SQL first. Can you explain the difference between WHERE and HAVING clauses?
+
+Priya S: WHERE is used to filter rows, and HAVING is used after GROUP BY to filter aggregated results.
+
+Interviewer: Good. Can you write a SQL query to find duplicate records in a table?
+
+Priya S: I think we can use GROUP BY with COUNT, but I’m not fully confident about the exact query syntax.
+
+Interviewer: That’s okay. Can you explain how INNER JOIN works?
+
+Priya S: INNER JOIN combines records from two tables when there is a matching value in both tables.
+
+Interviewer: Let’s go a bit deeper. Suppose you have sales and customer tables. How would you find customers who have not made any purchases?
+
+Priya S: I think we can use a LEFT JOIN, but I’m not very sure how to write that query correctly.
+
+Interviewer: Alright. Now let’s move on to communication. How do you usually present your analysis to business stakeholders?
+
+Priya S: I usually explain the numbers using charts, but sometimes I feel nervous and find it difficult to answer follow-up questions clearly.
+
+Interviewer: Can you give an example of a time when you had to explain a complex insight to a non-technical audience?
+
+Priya S: I try to simplify it, but honestly, I still struggle with presenting confidently.
+
+Interviewer: Thank you for being open about that. Do you have any questions for us?
+
+Priya S: No questions at the moment. Thank you for the opportunity.
+
+Interviewer: Thank you, Priya. It was nice speaking with you. We’ll be in touch regarding the next steps.
+
+Priya S: Thank you. Have a good day."
+C003,Rahul M,Full Stack Developer,P003,Arun Prasad,arun.prasad@panelhr.com,"Strong JavaScript and React development skills
+
+Understanding of component-based architecture and state management
+
+Basic backend API integration and database knowledge
+
+Experience building real-time or production-ready applications",Selected,"Interviewer: Good morning, Rahul. Welcome to the interview for the Full Stack Developer role. How are you today?
+
+Rahul M: Good morning. I’m doing well, thank you. Happy to be here.
+
+Interviewer: Before we start, I’d like to explain the structure of this interview. We’ll discuss your background, frontend experience with React, backend exposure, and project experience. Let’s begin with your introduction. Can you tell me about yourself and your technical background?
+
+Rahul M: Sure. I recently completed my training in full stack development. I have worked mainly with JavaScript, React, and some basic backend technologies. I’m still building my experience through practice projects.
+
+Interviewer: That’s fine. Let’s talk about frontend development first. Can you explain what React is and why it is used?
+
+Rahul M: React is a JavaScript library used to build user interfaces. It helps in creating reusable components and makes the UI faster.
+
+Interviewer: Good. Can you explain the concept of components in React?
+
+Rahul M: Components are reusable pieces of UI. We can create functional or class components.
+
+Interviewer: How do you manage state in React?
+
+Rahul M: I have used useState hook for managing state in components.
+
+Interviewer: Have you worked with more advanced state management solutions like Redux or Context API?
+
+Rahul M: I’ve heard about Redux, but I haven’t used it in my projects yet.
+
+Interviewer: Alright. Let’s move on to project experience. Have you worked on any real-time or production-level projects?
+
+Rahul M: Not really. I have mainly worked on demo applications and small practice projects during my course.
+
+Interviewer: Can you describe one of those projects and your role in it?
+
+Rahul M: I created a simple React application with a form and some basic validation. It was mostly for learning purposes.
+
+Interviewer: Did you handle any backend integration or API calls in that project?
+
+Rahul M: I made some basic API calls, but the backend was already available. I didn’t design the backend myself.
+
+Interviewer: Okay. From a full stack perspective, how comfortable are you with backend concepts like databases or APIs?
+
+Rahul M: I have basic knowledge, but I still need more hands-on experience.
+
+Interviewer: Thank you for your honesty. Do you have any questions for us?
+
+Rahul M: No questions at the moment. Thank you for the interview.
+
+Interviewer: Thank you, Rahul. It was nice speaking with you. We’ll get back to you regarding the next steps.
+
+Rahul M: Thank you. Have a great day."
+C004,Sneha P,E-commerce Analyst,P004,Meera Nair,meera.nair@panelhr.com,"Strong Excel and SQL fundamentals
+
+Understanding of e-commerce KPIs (conversion rate, AOV, cart abandonment)
+
+Ability to analyze sales funnels and customer journeys
+
+Clear reporting and performance analysis skills",Selected,"Interviewer: Good morning, Sneha. Welcome to the interview for the E-commerce Analyst role. How are you doing today?
+
+Sneha P: Good morning. I’m doing well, thank you. I’m happy to be here.
+
+Interviewer: Before we begin, I’d like to explain how today’s interview will go. We’ll talk about your background, your analytical skills, and your exposure to e-commerce data and metrics. Let’s start with a brief introduction. Can you tell me about your experience?
+
+Sneha P: Sure. I have around two years of experience working as an analyst. I mostly work with Excel and basic SQL to prepare reports and dashboards for internal teams.
+
+Interviewer: That’s good. Have you worked specifically with e-commerce platforms or online sales data?
+
+Sneha P: Not directly. My work has mostly been on internal operational data, not specifically e-commerce platforms.
+
+Interviewer: Okay. Let’s talk about analytics. What Excel functions do you commonly use in your day-to-day work?
+
+Sneha P: I regularly use VLOOKUP, IF formulas, pivot tables, and some basic charts.
+
+Interviewer: Can you explain how a pivot table helps in analysis?
+
+Sneha P: Pivot tables help summarize large datasets and make it easier to analyze totals and trends.
+
+Interviewer: Good. Now let’s move to SQL. Can you explain a simple SELECT query?
+
+Sneha P: SELECT is used to fetch data from a table, and we can use WHERE to filter the results.
+
+Interviewer: Have you used joins in SQL?
+
+Sneha P: I have basic knowledge of joins, but I don’t use them very frequently.
+
+Interviewer: Since this is an E-commerce Analyst role, are you familiar with metrics like conversion rate, average order value, or cart abandonment?
+
+Sneha P: I have heard of these terms, but I haven’t worked on analyzing them directly.
+
+Interviewer: Can you explain what conversion rate means in an e-commerce context?
+
+Sneha P: Conversion rate is related to users buying products, but I don’t know the exact calculation.
+
+Interviewer: Have you ever analyzed customer journeys or sales funnels?
+
+Sneha P: No, I haven’t worked on funnel analysis yet.
+
+Interviewer: Alright. Thank you for your honesty. Do you have any questions for us?
+
+Sneha P: No questions at the moment. Thank you for the opportunity.
+
+Interviewer: Thank you, Sneha. It was nice speaking with you. We’ll get back to you with the next steps.
+
+Sneha P: Thank you. Have a great day."
+C005,Vikas R,Python Developer,P005,Vikram Reddy,vikram.reddy@panelhr.com,"Strong understanding of OOP concepts (inheritance, polymorphism)
+
+Experience writing maintainable Python code
+
+Knowledge of exception handling and custom exceptions
+
+Familiarity with unit testing and clean code practices",Selected,"Interviewer: Good morning, Vikas. Welcome to the interview for the Python Developer role. How are you today?
+
+Vikas R: Good morning. I’m doing well, thank you. I appreciate the opportunity.
+
+Interviewer: Before we begin, I’d like to give you a quick overview of today’s interview. We’ll discuss your Python experience, object-oriented programming concepts, and your general coding approach. Let’s start with your background. Can you tell me about your experience working with Python?
+
+Vikas R: Sure. I have around three years of experience using Python for scripting and small application development. I have mainly worked on automation scripts and backend utilities.
+
+Interviewer: That’s good. Let’s move into object-oriented programming. Can you explain what OOP is?
+
+Vikas R: OOP stands for Object Oriented Programming. It includes concepts like classes, objects, inheritance, encapsulation, and polymorphism.
+
+Interviewer: Can you explain inheritance with a practical example?
+
+Vikas R: Inheritance means one class can take properties from another class. I understand the definition, but I find it a bit difficult to explain real-life examples clearly.
+
+Interviewer: That’s okay. Can you explain polymorphism?
+
+Vikas R: Polymorphism means the same function name can behave differently.
+
+Interviewer: How comfortable are you with designing classes for real-world problems?
+
+Vikas R: I usually follow existing patterns, but I’m not very confident in designing complex class structures from scratch.
+
+Interviewer: Let’s talk about exception handling. How do you handle errors in Python?
+
+Vikas R: We use try and except blocks to catch exceptions.
+
+Interviewer: Can you give an example of a custom exception you have created?
+
+Vikas R: I haven’t created custom exceptions yet. I mostly use built-in ones.
+
+Interviewer: Alright. Do you have experience writing unit tests for your Python code?
+
+Vikas R: I have limited experience with unit testing.
+
+Interviewer: Thank you for your responses. Do you have any questions for us?
+
+Vikas R: No questions right now. Thank you for your time.
+
+Interviewer: Thank you, Vikas. It was nice speaking with you. We’ll get back to you with the next steps.
+
+Vikas R: Thank you. Have a good day."
+C006,Anjali T,Backend Engineer,P001,Rajesh Kumar,rajesh.kumar@panelhr.com,"Strong Python and REST API development skills
+
+Understanding of HTTP status codes and structured error handling
+
+Knowledge of backend architecture and scalability
+
+Familiarity with logging and performance optimization",Selected,"Interviewer: Good morning, Anjali. Welcome to the interview for the Backend Engineer role. How are you doing today?
+
+Anjali T: Good morning. I’m doing well, thank you. Happy to be here.
+
+Interviewer: Before we begin, I’ll give you a quick overview of the interview. We’ll discuss your backend experience, Python fundamentals, and some concepts related to API design and backend architecture. Let’s start with your background. Can you tell me about your experience as a backend engineer?
+
+Anjali T: Sure. I have around three years of experience working mainly with Python. I’ve worked on backend scripts and some APIs, mostly handling feature updates and bug fixes.
+
+Interviewer: That’s good. Let’s start with APIs. Can you explain what a REST API is?
+
+Anjali T: A REST API is used to send and receive data between the frontend and backend using HTTP methods.
+
+Interviewer: Can you name some common HTTP methods and their purposes?
+
+Anjali T: GET is used to fetch data, POST is used to send data, PUT is for updating, and DELETE is for removing data.
+
+Interviewer: Good. How do you design REST APIs to handle errors properly?
+
+Anjali T: I usually use try-except blocks to catch errors and return messages, but I haven’t designed structured error responses.
+
+Interviewer: Have you worked with standard HTTP status codes like 400, 401, or 500?
+
+Anjali T: I know they exist, but I don’t clearly remember what each one represents.
+
+Interviewer: Alright. Let’s talk about backend service architecture. Have you designed any backend systems from scratch?
+
+Anjali T: No, I usually work on existing codebases. I haven’t been involved in system-level design or architecture discussions.
+
+Interviewer: Can you explain how you would structure a backend service for scalability?
+
+Anjali T: I don’t have much experience with scalability. I mostly focus on writing the logic given to me.
+
+Interviewer: Have you worked with concepts like load balancing or caching?
+
+Anjali T: I have heard about them, but I haven’t implemented them myself.
+
+Interviewer: Okay. How do you usually handle logging in backend applications?
+
+Anjali T: I print logs for debugging, but I haven’t worked much with centralized logging systems.
+
+Interviewer: Thank you for your honest answers. Do you have any questions for us?
+
+Anjali T: No questions right now. Thank you for the interview.
+
+Interviewer: Thank you, Anjali. It was nice speaking with you. We’ll let you know about the next steps.
+
+Anjali T: Thank you. Have a great day."
+C007,Karthik N,Data Engineer,P006,Priya Iyer,priya.iyer@panelhr.com,"Strong Python and Apache Spark knowledge
+
+Understanding of Spark transformations and actions
+
+Experience working with large datasets and optimization
+
+Knowledge of distributed processing and pipeline monitoring",Selected,"Interviewer: Hi Karthik, good morning. Thanks for joining the interview today. This round will focus on your experience with data engineering tools, especially Python and Apache Spark. Feel free to think aloud while answering.
+
+Karthik N: Good morning. Sure, I’ll do my best.
+
+Interviewer: Let’s start with your background. Can you walk me through your current role and the kind of data pipelines you’ve worked on?
+
+Karthik N: I currently work as a data engineer. I mostly write Python scripts for data processing and have some exposure to Spark for handling large datasets.
+
+Interviewer: When you say exposure to Spark, can you explain what Apache Spark is used for and why it’s preferred over traditional processing tools?
+
+Karthik N: Spark is a big data processing framework. It is faster compared to older tools because it works in memory.
+
+Interviewer: That’s correct at a high level. Can you explain how Spark achieves this performance improvement?
+
+Karthik N: I know it is faster, but I’m not very clear on the internal working.
+
+Interviewer: That’s okay. Let’s move into some practical concepts. Can you explain the difference between Spark transformations and actions?
+
+Karthik N: I have heard of transformations and actions, but I don’t remember the difference clearly.
+
+Interviewer: Have you written any Spark jobs using DataFrames or RDDs?
+
+Karthik N: I have used DataFrames in a basic way, mostly following existing code.
+
+Interviewer: Can you describe a scenario where you had to optimize a Spark job for performance?
+
+Karthik N: I haven’t really optimized Spark jobs myself. Usually, I just run the jobs as they are.
+
+Interviewer: Alright. Let’s switch to Python. How comfortable are you with writing complex Python logic for data processing?
+
+Karthik N: I’m comfortable with basic Python, like loops and functions, but I still struggle with advanced concepts.
+
+Interviewer: Have you worked with Python libraries like Pandas or PySpark in depth?
+
+Karthik N: I have used Pandas for small datasets, but my PySpark usage is limited.
+
+Interviewer: Thank you for being honest. Do you have any experience with monitoring or debugging large data pipelines?
+
+Karthik N: No, I haven’t handled monitoring or debugging at that scale.
+
+Interviewer: Okay. That gives us a good understanding. Do you have any questions for us?
+
+Karthik N: No questions. Thank you for your time.
+
+Interviewer: Thank you, Karthik. It was nice speaking with you. We’ll connect with you regarding the next steps."
+C008,Meena L,Business Analyst,P007,Karthik Raman,karthik.raman@panelhr.com,"Structured requirement gathering and documentation (BRD/FRD)
+
+Strong stakeholder communication skills
+
+Ability to validate and prioritize requirements
+
+Translate business needs into technical specifications",Selected,"Interviewer: Good morning, Meena. Thanks for joining today. This interview will focus on your experience as a Business Analyst, especially around requirement gathering and stakeholder interaction. Let’s start with your background.
+
+Meena L: Good morning. I have about two years of experience working as a Business Analyst. I mainly support reporting activities and help teams with documentation when required.
+
+Interviewer: Can you describe your typical day-to-day responsibilities in your current role?
+
+Meena L: I usually work on preparing reports, updating trackers, and coordinating with internal teams to collect information.
+
+Interviewer: When a new requirement comes in, how do you usually capture and document it?
+
+Meena L: Normally, I receive requirements through emails or meetings, and I note down the points shared.
+
+Interviewer: Do you follow any structured approach for requirement gathering, like interviews, workshops, or questionnaires?
+
+Meena L: Not really. I mostly rely on what stakeholders share during meetings.
+
+Interviewer: Have you created formal documents such as Business Requirement Documents (BRD) or Functional Requirement Documents (FRD)?
+
+Meena L: No, I haven’t created those documents myself. I have only reviewed them occasionally.
+
+Interviewer: How do you ensure that the requirements you collect are clear and complete?
+
+Meena L: I usually confirm with stakeholders informally, but I don’t follow a specific validation process.
+
+Interviewer: Have you worked closely with technical teams to translate business requirements into technical specifications?
+
+Meena L: I have interacted with technical teams, but I usually pass on high-level information.
+
+Interviewer: Can you explain any techniques you use for requirement prioritization?
+
+Meena L: I’m not very familiar with prioritization techniques. I usually work on tasks as instructed.
+
+Interviewer: Alright. That gives me a good picture. Do you have any questions for us?
+
+Meena L: No questions. Thank you for the discussion.
+
+Interviewer: Thank you, Meena. We appreciate your time and will get back to you regarding next steps."
+C009,Rohit S,Software Engineer,P008,Sneha Menon,sneha.menon@panelhr.com,"Strong problem-solving and feature implementation skills
+
+Clear communication of technical concepts
+
+Ability to handle debugging and issue resolution
+
+Proactive risk identification and team collaboration",Selected,"Interviewer: Hi Rohit, good morning. Thanks for taking the time to speak with us today. This conversation will focus on your technical background as well as how you communicate your work and ideas. Please feel free to explain things in your own words.
+
+Rohit S: Good morning. Sure, I’ll try my best.
+
+Interviewer: Let’s begin with your most recent project. Can you walk me through what the project was about and your role in it?
+
+Rohit S: I worked on an application where I was responsible for fixing bugs and adding some features.
+
+Interviewer: Can you pick one feature you worked on and explain the problem it solved?
+
+Rohit S: It was related to a small change requested by the client. I don’t remember the exact details now.
+
+Interviewer: That’s okay. How did you understand the requirement for that feature?
+
+Rohit S: My team lead explained it to me, and I followed the instructions.
+
+Interviewer: Suppose you had to explain this feature to a non-technical stakeholder. How would you describe it?
+
+Rohit S: I would try to explain it simply, but I usually find it difficult to explain technical things clearly.
+
+Interviewer: Have you ever faced a situation where miscommunication caused an issue in a project?
+
+Rohit S: There were some misunderstandings sometimes, but the team usually handled it.
+
+Interviewer: How do you usually communicate progress or blockers to your team?
+
+Rohit S: I mostly update during meetings, but I don’t go into much detail.
+
+Interviewer: Can you give an example where you proactively communicated a risk or issue?
+
+Rohit S: I can’t recall a specific example right now.
+
+Interviewer: Thank you for your honesty. Do you have any questions for us?
+
+Rohit S: No questions. Thank you.
+
+Interviewer: Thank you, Rohit. We appreciate your time and will get back to you with next steps."
+C010,Neha K,Backend Engineer,P001,Rajesh Kumar,rajesh.kumar@panelhr.com,"Strong backend system design and database schema knowledge
+
+Understanding of scalability and load balancing
+
+Experience handling concurrency and caching strategies
+
+Knowledge of monitoring and production systems",Selected,"Interviewer: Good morning, Neha. Thank you for joining us today. This interview will focus on your backend engineering experience, with particular emphasis on system design, scalability, and architectural thinking. Please take your time while answering.
+
+Neha K: Good morning. Thank you. I’ll do my best.
+
+Interviewer: Let’s begin with your background. Can you briefly describe the kind of backend systems you have worked on so far?
+
+Neha K: I have mainly worked on Python-based backend applications. My work mostly involves writing APIs and fixing bugs in existing systems.
+
+Interviewer: That’s good. Let’s move into system design. Imagine you are asked to design a backend service for a simple order management system. How would you start?
+
+Neha K: I would first create APIs to handle orders and store data in the database.
+
+Interviewer: Can you explain how you would design the database schema for this system?
+
+Neha K: I haven’t really designed database schemas myself. Usually, the schema is already available.
+
+Interviewer: Okay. How would your system handle a sudden increase in traffic, for example during a sale?
+
+Neha K: I’m not very sure. I think the server should be strong enough to handle it.
+
+Interviewer: Have you worked with concepts like horizontal scaling or load balancers?
+
+Neha K: I have heard about load balancers, but I haven’t used them in my projects.
+
+Interviewer: How would you ensure data consistency if multiple users place orders at the same time?
+
+Neha K: I’m not very clear on concurrency handling. I haven’t dealt with that directly.
+
+Interviewer: Let’s talk about caching. Where would you use caching in a backend system and why?
+
+Neha K: I know caching improves performance, but I don’t know exactly where to use it.
+
+Interviewer: Have you worked with any message queues or asynchronous processing systems?
+
+Neha K: No, I haven’t worked with message queues.
+
+Interviewer: Okay. Moving to error handling—how do you design error responses in APIs?
+
+Neha K: I use try-except blocks, but I don’t follow a specific error response structure.
+
+Interviewer: Finally, can you explain how you would monitor the health of a backend service in production?
+
+Neha K: I haven’t monitored production systems myself.
+
+Interviewer: Thank you for your answers, Neha. Do you have any questions for us?
+
+Neha K: No questions. Thank you for the discussion.
+
+Interviewer: Thank you, Neha. We’ll reach out to you regarding the next steps."
+C011,Jeeva S,Frontend Developer,P003,Arun Prasad,arun.prasad@panelhr.com,"Strong JavaScript fundamentals including closures
+
+Experience with React components and state management
+
+Responsive UI design using CSS/Flexbox/Grid
+
+Frontend performance optimization knowledge",Selected,"Interviewer: Good morning, Jeeva. Welcome to the interview for the Frontend Developer role. How are you today?
+
+Jeeva S: Good morning. I’m doing well, thank you. Happy to be here.
+
+Interviewer: Before we start, I want to explain how this interview will go. We’ll focus mainly on frontend technologies such as JavaScript, HTML, CSS, and modern UI frameworks. Let’s begin with your background. Can you tell me about your experience as a frontend developer?
+
+Jeeva S: Sure. I have around two and a half years of experience working as a frontend developer. I mostly work with JavaScript, HTML, CSS, and basic React to build user interfaces.
+
+Interviewer: That’s good. Let’s start with JavaScript fundamentals. Can you explain what a closure is?
+
+Jeeva S: A closure is when an inner function can access variables from an outer function even after the outer function has finished executing.
+
+Interviewer: Good explanation. Can you give a simple example of where closures are useful?
+
+Jeeva S: Closures are useful in callbacks and event handlers, but I haven’t used them extensively.
+
+Interviewer: That’s fine. Let’s move to UI layout. Can you explain the difference between Flexbox and Grid?
+
+Jeeva S: Flexbox is used for one-dimensional layouts, and Grid is used for two-dimensional layouts.
+
+Interviewer: Good. How do you make a webpage responsive across different screen sizes?
+
+Jeeva S: I usually use media queries and responsive units like percentages and rem.
+
+Interviewer: Have you worked with any frontend frameworks?
+
+Jeeva S: Yes, I have worked with React for building components and handling basic state.
+
+Interviewer: Can you explain how state works in React?
+
+Jeeva S: State is used to manage data inside a component, and we can update it using hooks like useState.
+
+Interviewer: Have you worked on performance optimization on the frontend, such as reducing re-renders?
+
+Jeeva S: I have basic knowledge, but I haven’t done deep performance optimization.
+
+Interviewer: Okay. Have you worked closely with backend systems or databases?
+
+Jeeva S: No, my role is mostly limited to frontend development. I usually consume APIs provided by backend teams.
+
+Interviewer: Understood. Just to confirm, do you write SQL queries or work directly with databases in your role?
+
+Jeeva S: No, I don’t work with databases or SQL.
+
+Interviewer: Alright. Do you have any questions for us?
+
+Jeeva S: No questions. Thank you for the interview.
+
+Interviewer: Thank you, Jeeva. It was nice speaking with you. We’ll get back to you regarding the next steps."
+C012,Lalitha C,Data Analyst,P002,Divya Sharma,divya.sharma@panelhr.com,"Strong SQL including GROUP BY and JOIN queries
+
+Experience with data cleaning and validation
+
+Ability to perform exploratory data analysis
+
+Clear dashboard and report presentation skills",Selected,"Interviewer: Good morning, Lalitha. Welcome to the interview for the Data Analyst role. How are you today?
+
+Lalitha C: Good morning. I’m doing well, thank you. Happy to be here.
+
+Interviewer: Before we begin, I’d like to explain the structure of this interview. We’ll focus on your experience with data analysis, SQL, Excel, and how you work with data to generate insights. Let’s start with your background. Can you tell me about your experience as a data analyst?
+
+Lalitha C: Sure. I have around two years of experience working as a data analyst. My primary tools are SQL and Excel, and I mainly work on data extraction, cleaning, and reporting.
+
+Interviewer: That’s good. Let’s talk about SQL. Can you explain what the GROUP BY clause is used for?
+
+Lalitha C: GROUP BY is used to group rows that have the same values and is mostly used with aggregate functions like COUNT or SUM.
+
+Interviewer: Can you give an example of a situation where you would use GROUP BY?
+
+Lalitha C: For example, if we want to find total sales per product or per region, we can use GROUP BY.
+
+Interviewer: Good. How comfortable are you with writing joins in SQL?
+
+Lalitha C: I’m comfortable with basic joins like INNER JOIN and LEFT JOIN, but I still need practice with more complex queries.
+
+Interviewer: Let’s move to data cleaning. How do you usually handle missing or incorrect data?
+
+Lalitha C: I usually identify missing values and either remove them or replace them based on the requirement. I also check for duplicate records.
+
+Interviewer: What tools do you use for data cleaning?
+
+Lalitha C: Mostly SQL and Excel. Sometimes I use basic Python scripts.
+
+Interviewer: Have you worked on exploratory data analysis?
+
+Lalitha C: Yes, I do basic exploratory analysis to understand trends and patterns before creating reports.
+
+Interviewer: How do you present your findings to business stakeholders?
+
+Lalitha C: I usually create dashboards or summary reports and explain the insights in simple terms.
+
+Interviewer: Have you ever been involved in deployment, environment setup, or containerization of analytics applications?
+
+Lalitha C: No, I haven’t worked on deployment or containerization.
+
+Interviewer: Are you familiar with tools like Docker?
+
+Lalitha C: I’ve heard about Docker, but I haven’t used it in my work.
+
+Interviewer: That’s fine. Do you have any questions for us?
+
+Lalitha C: No questions. Thank you for the opportunity.
+
+Interviewer: Thank you, Lalitha. It was nice speaking with you. We’ll get back to you with the next steps.
+"
+C013,Anjali T,UI/UX Designer,P004,Meera Nair,meera.nair@panelhr.com,"Strong user research and usability testing experience
+
+Ability to create wireframes and prototypes
+
+Understanding of usability principles and design thinking
+
+Experience using tools like Figma or Adobe XD",Selected,"Transcript (copy this fully into the transcript column):
+
+Interviewer: Good morning, Anjali. Thank you for joining us today. This interview will focus on your experience in UI/UX design, particularly user research, usability principles, and design thinking. Let’s start with a brief introduction.
+
+Anjali T: Good morning. Thank you for having me. I have around three years of experience working as a UI/UX designer, mainly focusing on user research and usability testing.
+
+Interviewer: Great. Can you describe your typical design process when starting a new project?
+
+Anjali T: I usually begin by understanding the problem statement and business goals. Then I conduct user research through interviews or surveys, followed by wireframing and prototyping. After that, I perform usability testing and iterate on the designs.
+
+Interviewer: That sounds good. Let’s talk more about user research. What methods have you used to understand user needs?
+
+Anjali T: I’ve used user interviews, online surveys, usability tests, and sometimes contextual inquiry depending on the project.
+
+Interviewer: How do you analyze and synthesize insights from user research?
+
+Anjali T: I group user feedback into themes, identify common pain points, and create user personas to represent key user groups.
+
+Interviewer: Can you explain what usability testing is and how you conduct it?
+
+Anjali T: Usability testing involves observing real users as they interact with a product to identify usability issues. I usually prepare tasks, observe user behavior, and collect feedback.
+
+Interviewer: Have you worked with any design tools?
+
+Anjali T: Yes, I regularly use tools like Figma and Adobe XD for wireframes and prototypes.
+
+Interviewer: How do you ensure that your designs align with usability principles?
+
+Anjali T: I follow principles like consistency, simplicity, accessibility, and user feedback. I also refer to established usability heuristics.
+
+Interviewer: Can you give an example of a usability issue you discovered through testing and how you resolved it?
+
+Anjali T: In one project, users struggled to find a key action button. Based on testing feedback, I repositioned it and improved its visibility, which improved task completion rates.
+
+Interviewer: That’s a good example. Do you collaborate with developers during implementation?
+
+Anjali T: Yes, I work closely with developers to ensure designs are implemented correctly and address any feasibility concerns.
+
+Interviewer: Thank you for sharing your experience. Do you have any questions for us?
+
+Anjali T: No questions. Thank you for the conversation.
+
+Interviewer: Thank you, Anjali. It was great speaking with you. We’ll get back to you with the next steps."
+C014,Suresh R,Backend Engineer,P001,Rajesh Kumar,rajesh.kumar@panelhr.com,"Strong knowledge of REST APIs and HTTP methods
+
+Understanding of authentication and database transactions
+
+Familiarity with ACID properties
+
+Ability to handle debugging and production issues",Reject,"Interviewer: Good morning, Suresh. Welcome to the interview for the Backend Engineer role. How are you today?
+
+Suresh R: Good morning. I’m doing okay. Thank you.
+
+Interviewer: Let’s start with a brief introduction. Can you tell me about your backend development experience?
+
+Suresh R: I have worked mostly on Python. I do some coding and handle tasks assigned by my team lead.
+
+Interviewer: Okay. Can you explain what a REST API is?
+
+Suresh R: REST API is used to connect frontend and backend.
+
+Interviewer: Can you explain the difference between GET and POST methods?
+
+Suresh R: GET is for getting data, and POST is also used sometimes for getting data.
+
+Interviewer: Not exactly. Can you tell me when you would use POST?
+
+Suresh R: I’m not very sure. I usually follow existing code.
+
+Interviewer: Alright. Can you explain how authentication works in backend systems?
+
+Suresh R: I haven’t worked on authentication directly.
+
+Interviewer: What about database transactions? Are you familiar with ACID properties?
+
+Suresh R: I’ve heard of ACID, but I don’t remember what each letter stands for.
+
+Interviewer: Have you ever handled production issues or debugging?
+
+Suresh R: No, senior developers usually handle those.
+
+Interviewer: Okay. Thank you for your time."
+C015,Kavya M,Data Analyst,P002,Divya Sharma,divya.sharma@panelhr.com,"Strong SQL query writing including JOIN and GROUP BY
+
+Ability to analyze and validate dataset accuracy
+
+Handling missing data and data cleaning processes
+
+Logical thinking and structured reporting skills",Reject,"Interviewer: Good morning, Kavya. Welcome to the interview for the Data Analyst role. How are you today?
+
+Kavya M: Good morning. I’m fine. Thank you.
+
+Interviewer: Let’s start with your background. Can you tell me about your experience in data analysis?
+
+Kavya M: I have worked mainly with Excel. I create reports and charts.
+
+Interviewer: Have you worked with SQL?
+
+Kavya M: I know basic SELECT queries.
+
+Interviewer: Can you write a SQL query to calculate total sales per category?
+
+Kavya M: I’m not sure. I think we can use SUM, but I don’t know how to group it.
+
+Interviewer: Okay. Can you explain what JOIN does in SQL?
+
+Kavya M: JOIN is used to join tables.
+
+Interviewer: Can you explain the difference between INNER JOIN and LEFT JOIN?
+
+Kavya M: I’m not very clear on that.
+
+Interviewer: How do you handle missing data during analysis?
+
+Kavya M: I usually ignore missing values.
+
+Interviewer: How do you validate the accuracy of your analysis?
+
+Kavya M: I mostly trust the data provided.
+
+Interviewer: Alright. Thank you for answering."

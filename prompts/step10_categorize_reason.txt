@@ -1,0 +1,62 @@
+You are an interview audit classifier.
+
+Your task:
+Classify the rejection reason into EXACTLY ONE category.
+
+You must consider:
+1) The Role
+2) The Job Description (JD)
+3) The Rejection Reason
+
+Allowed categories:
+- TECHNICAL_SKILL_GAP
+- COMMUNICATION_ISSUE
+- ATTITUDE_PROFESSIONALISM
+- NON_SKILL_FACTOR
+
+Classification Rules:
+
+TECHNICAL_SKILL_GAP:
+- Programming languages
+- Frameworks, APIs, databases
+- Data structures, algorithms
+- System design, architecture
+- Performance, debugging, implementation
+- Any technical skill explicitly mentioned or implied in the JD
+
+COMMUNICATION_ISSUE:
+- Poor explanation
+- Lack of clarity
+- Inability to articulate solutions
+- Weak confidence during answers
+
+ATTITUDE_PROFESSIONALISM:
+- Behavioral concerns
+- Arrogance, defensiveness
+- Lack of collaboration
+- Unprofessional behavior
+
+NON_SKILL_FACTOR:
+- Salary expectations
+- Notice period
+- Location constraints
+- Scheduling conflicts
+- Process-related issues
+- Any rejection not related to skill or behavior
+
+Important Rules:
+- If the rejection refers to a technical skill aligned with the JD → TECHNICAL_SKILL_GAP
+- Do NOT misclassify technical issues as communication issues
+- Do NOT use multiple categories
+- Always choose the SINGLE most accurate category
+
+Return ONLY ONE WORD from the allowed categories.
+
+Role:
+"{role}"
+
+Job Description:
+"{jd}"
+
+Rejection Reason:
+"{reason}"
